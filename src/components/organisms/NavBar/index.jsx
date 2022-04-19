@@ -1,61 +1,60 @@
 import * as React from "react";
-import { makeStyles } from "@mui/styles";
-import { Box, Grid, InputBase, Paper, Typography } from "@mui/material";
+import { makeStyles, styled } from "@mui/styles";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import InputBar from "../../molecules/InputBar";
 import Button from "../../atoms/Button";
-import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 
 const useStyles = makeStyles({
-    root: {
+    toolBar: {
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
+        "& .css-1e6y48t-MuiButtonBase-root-MuiButton-root": {
+            color: "white",
+        },
     },
-    rightNavContainer: {
-        display: "inline-flex",
-        float: "right",
-        alignItems: "center",
+    button: {
+        color: "white",
     },
 });
+
+const Icons = styled(Box)(() => ({
+    display: "flex",
+    gap: "20px",
+    alignItems: "center",
+}));
 
 const NavBar = (props) => {
     const classes = useStyles();
 
     return (
-        <Paper style={{ flexGrow: 1, backgroundColor: "" }}>
-            <Grid container spacing={2}>
-                <Grid item xs={3} className={classes.root}>
-                    <Typography>Nothing Ui</Typography>
-                </Grid>
-                <Grid item xs={4} className={classes.root}>
-                    <InputBar />
-                </Grid>
-                <Grid item xs={5} display="flex">
-                    <Box className={classes.rightNavContainer}>
-                        <div>
-                            <IconButton size="large" color="inherit">
-                                <Badge badgeContent={4} color="success">
-                                    <FavoriteIcon />
-                                </Badge>
-                            </IconButton>
-                        </div>
-                        <div>
-                            <IconButton size="large" color="inherit">
-                                <Badge badgeContent={4} color="success">
-                                    <ShoppingCartIcon />
-                                </Badge>
-                            </IconButton>
-                        </div>
-                        <div>
-                            <Button name="Login" />
-                        </div>
-                    </Box>
-                </Grid>
-            </Grid>
-        </Paper>
+        <AppBar>
+            <Toolbar className={classes.toolBar}>
+                <Typography
+                    variant="h5"
+                    sx={{ display: { xs: "none", sm: "block" } }}
+                >
+                    STORE
+                </Typography>
+                <StoreMallDirectoryIcon
+                    sx={{ display: { xs: "block", sm: "none" } }}
+                />
+                <InputBar />
+                <Icons>
+                    <Badge badgeContent={4} color="error">
+                        <FavoriteIcon />
+                    </Badge>
+                    <Badge badgeContent={4} color="error">
+                        <ShoppingCartIcon />
+                    </Badge>
+                    <Button name="Login" />
+                </Icons>
+            </Toolbar>
+        </AppBar>
     );
 };
 

@@ -9,6 +9,12 @@ const useStyles = makeStyles({
     root: {
         border: "1px solid black",
         borderRadius: "4px",
+        backgroundColor: "white",
+        width: "25%",
+    },
+    inputBase: {
+        width: "100%",
+        padding: "4px",
     },
 });
 
@@ -19,7 +25,8 @@ const InputBar = (props) => {
         <Box className={classes.root}>
             <InputBase
                 id="input-with-icon-adornment"
-                placeholder="Search"
+                placeholder="Search for products, brands and more"
+                className={classes.inputBase}
                 startAdornment={
                     <InputAdornment position="start">
                         <SearchIcon />
